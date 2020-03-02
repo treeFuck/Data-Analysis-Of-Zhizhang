@@ -1,34 +1,139 @@
 <style lang="scss">
 .index {
-  #map {
-    width: 100vw;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  color: #fff;
+  .left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20vw;
     height: 100vh;
-
-    .amap-icon img {
-      width: 50px;
-      height: 50px;
+    background-color: #444;
+    .top {
+      height: 30vh;
+      .logo {
+        margin: 15px auto;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background-color: #666;
+        background-image: url(../assets/blind.png);
+        background-position: 70% center;
+        background-size: 66%;
+        background-repeat: no-repeat;
+      }
+      .welCome {
+        margin: 25px auto;
+        height: 30px;
+        width: 10em;
+        font-size: 18px;
+        line-height: 30px;
+        text-align: center;
+        border-bottom: 1px solid #999;
+      }
+      .heatMap {
+        margin: 0 auto;
+        width: 15vw;
+        height: 35px;
+        color: #000;
+        cursor: pointer;
+        line-height: 35px;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #999;
+        // background-color: #6dbd15;
+      }
     }
-
-    // .amap-marker-label {
-    //   padding: 1em;
-    //   width: 150px;
-    //   height: 150px;
-    //   border: none;
-    //   border-radius: 5px;
-    //   background-color: #fff;
-    //   box-shadow: 2px 2px 10px 0 #999;
-    // }
+    .bottom {
+      margin: 2vh 0.5vw;
+      width: 19vw;
+      height: 66vh;
+      background-color: #666;
+      .data {
+        padding: 1em;
+        height: 50vh;
+        span {
+          display: block;
+          margin: 0.5em 0;
+          input {
+            display: inline-block;
+            border: none;
+            outline: none;
+            background: none;
+            text-align:center;
+            border-bottom: 1px solid #fff;
+          }
+        }
+      }
+      .sure {
+        margin: 1.5vh auto;
+        width: 15vw;
+        height: 5vh;
+        color: #fff;
+        cursor: pointer;
+        line-height: 5vh;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #6dbd15;
+      }
+      .delete {
+        margin: 1.5vh auto;
+        width: 15vw;
+        height: 5vh;
+        color: #000;
+        cursor: pointer;
+        line-height: 5vh;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #f40;
+      }
+    }
   }
-  .info {
-    word-wrap: break-word;
-    width: 150px;
-    // height: 150px;
+  .right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    height: 100vh;
+    #map {
+      width: 100%;
+      height: 100%;
+      .amap-icon img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    .info {
+      word-wrap: break-word;
+      width: 150px;
+      // height: 150px;
+    }
   }
 }
 </style> 
 <template>
   <div class="index">
-    <div id="map"></div>
+    <div class="left">
+      <div class="top">
+        <div class="logo"></div>
+        <div class="welCome">Thanks for using!</div>
+        <div class="heatMap">热力图数据分析</div>
+      </div>
+      <div class="bottom">
+        <div class="data">
+          <span>数据1：<input type="text"></span>
+          <span>数据2：<input type="text"></span>
+        </div>
+        <div class="sure">确定修改</div>
+        <div class="delete">删除服务点</div>
+      </div>
+    </div>
+    <div class="right">
+      <div id="map"></div>
+    </div>
   </div>
 </template>
 

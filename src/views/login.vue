@@ -90,7 +90,7 @@
 
 <template>
   <div class="login">
-    <img class="bg" src="../assets/bg.jpg" />
+    <img class="bg" :src="bg" />
     <div class="con">
       <span class="title">Login</span>
       <div class="input">
@@ -127,14 +127,14 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import axios from "axios";
-
+import bg from "../assets/bg.jpg";
 @Component
 export default class login extends Vue {
   user: string = "";
   pass: string = "";
   userJudge: string = "";
   passJudge: string = "";
-
+  bg:string =  bg;
   judeg():boolean {
     let judeg = /[\w_]{6,20}$/;
     if (!judeg.test(this.user)) {
@@ -161,6 +161,8 @@ export default class login extends Vue {
     // }).then(res=>{
     //   console.log(res);
     // })
+  }
+  mounted() {
   }
 }
 </script>
