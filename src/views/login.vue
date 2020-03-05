@@ -96,12 +96,7 @@
       <div class="input">
         <div>
           <img src="../assets/user.png" />
-          <input
-            v-model="user"
-            placeholder="username"
-            maxlength="6"
-            @focus="removeJudge"
-          />
+          <input v-model="user" placeholder="username" maxlength="6" @focus="removeJudge" />
           <span class="judge">{{userJudge}}</span>
         </div>
         <div>
@@ -126,7 +121,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import axios from "axios";
 import bg from "../assets/bg.jpg";
 @Component
 export default class login extends Vue {
@@ -134,8 +128,9 @@ export default class login extends Vue {
   pass: string = "";
   userJudge: string = "";
   passJudge: string = "";
-  bg:string =  bg;
-  judeg():boolean {
+  bg: string = bg;
+  reqUrl: string = "http://47.102.85.36:61234";
+  judeg(): boolean {
     let judeg = /[\w_]{6,20}$/;
     if (!judeg.test(this.user)) {
       this.userJudge = "请输入0-6位有效字符";
@@ -151,18 +146,33 @@ export default class login extends Vue {
     this.userJudge = "";
     this.passJudge = "";
   }
-  commit():void {
-    if(!this.judeg()) {
+  commit(): void {
+    if (!this.judeg()) {
       return;
     }
-    this.$router.replace({name:'index'});
-    // axios.post("",{
+    // this.$axios.post("",{
 
     // }).then(res=>{
     //   console.log(res);
     // })
+    let param = {
+      username: this.user, // 用户名
+      password: this.pass // 密码
+    };
+    this.$axios
+      .post(this.reqUrl + "/api/user/login", param)
+      .then((res: any) => {
+        console.log(res.data)
+        if(res.data.code == 200) {
+          this.$router.replace({ name: "index" });
+        } else {
+          alert("账号密码错误");
+        }
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
   }
-  mounted() {
-  }
+  mounted() {}
 }
 </script>

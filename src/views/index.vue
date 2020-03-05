@@ -309,7 +309,7 @@ export default class index extends Vue {
   // 模式
   pattern: number = 1; // 0--热力图， 1--服务点
   // 请求地址
-  reqUrl: string = "http://6033fd87.ngrok.io";
+  reqUrl: string = "http://47.102.85.36:61234";
   // 热力图实例
   heatmap: any = null;
   // 显示热力图的所在区域编号
